@@ -1,6 +1,6 @@
 <?php
 
-class Curso
+class Curso 
 {
     private $nombre;
     private $costo_base;
