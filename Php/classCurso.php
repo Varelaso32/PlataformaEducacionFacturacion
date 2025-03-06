@@ -29,6 +29,11 @@ class Curso
         }
     }
 
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
     public function getCostoBase()
     {
         return $this->costo_base;

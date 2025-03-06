@@ -30,7 +30,7 @@ $_SESSION['curso'] = serialize($cursoPrincipal);
         <h1 class="mb-3">Selección de Cursos Adicionales</h1>
         <p class="text-muted">Seleccione los cursos adicionales que desea tomar.</p>
 
-        <form action="formFactura.php" method="POST">
+        <form action="/Php/formFactura.php" method="POST">
             <p><strong>Estudiante:</strong> <?php echo $_SESSION['nombre']; ?></p>
             <p><strong>Curso Principal:</strong> <?php echo $_SESSION['curso_principal']; ?></p>
             <p><strong>Número de Cursos Adicionales:</strong> <?php echo $_SESSION['num_cursos']; ?></p>
