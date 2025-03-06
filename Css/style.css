@@ -1,0 +1,48 @@
+body {
+    background: url('https://s3.amazonaws.com/rtvc-assets-canalinstitucional.tv/s3fs-public/2022-12/Fondo-FEST-requisitos-beneficios.jpg') no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.92);
+    padding: 25px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.form-container:hover {
+    transform: scale(1.02);
+}
+
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px; 
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-select {
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #555;
+    background-color: #f8f9fa;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-select:hover {
+    border-color: #007bff;
+}
+
+.form-select:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 91, 187, 0.5);
+}
+
