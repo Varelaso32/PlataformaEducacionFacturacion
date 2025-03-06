@@ -1,5 +1,5 @@
 body {
-    background: url('https://source.unsplash.com/1600x900/?education,learning') no-repeat center center;
+    background: url('https://png.pngtree.com/background/20230401/original/pngtree-graduation-season-black-silhouette-background-illustration-illustration-picture-image_2236360.jpg') no-repeat center center;
     background-size: cover;
     height: 100vh;
 }
@@ -32,15 +32,15 @@ h1 {
     font-size: 1.2rem;
     padding: 12px 30px;
     border-radius: 8px;
-    background: #ffcc00;
-    color: black;
+    background: #104cce;
+    color: rgb(255, 255, 255);
     font-weight: bold;
     text-transform: uppercase;
     transition: 0.3s;
 }
 
 .btn-custom:hover {
-    background: #ff9900;
+    background: #1f6fe7;
     color: white;
     transform: scale(1.05);
 }
