@@ -36,8 +36,8 @@ $total = $resumenFactura["Total a Pagar"];
 
     <div class="p-4 bg-white shadow rounded">
         <h1 class="mb-3">Factura de Inscripción</h1>
-        <p><strong>Estudiante:</strong> <?php echo htmlspecialchars($nombre); ?></p>
-        <p><strong>Curso Principal:</strong> <?php echo htmlspecialchars($curso_principal); ?> - $<?php echo number_format($costo_base, 0, ',', '.'); ?></p>
+        <p><strong>Estudiante:</strong> <?php echo ($nombre); ?></p>
+        <p><strong>Curso Principal:</strong> <?php echo ($curso_principal); ?> - $<?php echo number_format($costo_base, 0, ',', '.'); ?></p>
 
         <p><strong>Cursos Adicionales:</strong></p>
         <?php if (!empty($cursos_seleccionados)): ?>
