@@ -1,16 +1,12 @@
 <?php
-session_start();
 include_once("classCurso.php");
 
-$_SESSION['nombre'] = $_POST['nombre'];
-$_SESSION['curso_principal'] = $_POST['curso_principal'];
-$_SESSION['num_cursos'] = $_POST['num_cursos'];
+$nombre = $_POST['nombre'];
+$curso_principal = $_POST['curso_principal'];
+$num_cursos = $_POST['num_cursos'];
 
-$cursoPrincipal = new Curso($_SESSION['curso_principal']);
-
+$cursoPrincipal = new Curso($curso_principal);
 $cursosDisponibles = $cursoPrincipal->getCursosAdicionalesDisponibles();
-
-$_SESSION['curso'] = serialize($cursoPrincipal);
 ?>
 
 <!DOCTYPE html>
@@ -31,19 +27,23 @@ $_SESSION['curso'] = serialize($cursoPrincipal);
         <p class="text-muted">Seleccione los cursos adicionales que desea tomar.</p>
 
         <form action="/Php/formFactura.php" method="POST">
-            <p><strong>Estudiante:</strong> <?php echo $_SESSION['nombre']; ?></p>
-            <p><strong>Curso Principal:</strong> <?php echo $_SESSION['curso_principal']; ?></p>
-            <p><strong>Número de Cursos Adicionales:</strong> <?php echo $_SESSION['num_cursos']; ?></p>
+            <input type="hidden" name="nombre" value="<?php echo $nombre; ?>">
+            <input type="hidden" name="curso_principal" value="<?php echo $curso_principal; ?>">
+            <input type="hidden" name="num_cursos" value="<?php echo $num_cursos; ?>">
+
+            <p><strong>Estudiante:</strong> <?php echo $nombre; ?></p>
+            <p><strong>Curso Principal:</strong> <?php echo $curso_principal; ?></p>
+            <p><strong>Número de Cursos Adicionales:</strong> <?php echo $num_cursos; ?></p>
 
             <?php
-            for ($i = 1; $i <= $_SESSION['num_cursos']; $i++) {
+            for ($i = 1; $i <= $num_cursos; $i++) {
                 echo "<div class='mb-3'>
                         <label class='form-label'>Curso Adicional $i:</label>
                         <select class='form-select' name='curso_adicional[]' required>
                             <option value='' disabled selected>Seleccione un curso</option>";
 
-                foreach ($cursosDisponibles as $nombre => $costo) {
-                    echo "<option value='$nombre'>$nombre - $$costo</option>";
+                foreach ($cursosDisponibles as $nombreCurso => $costo) {
+                    echo "<option value='$nombreCurso'>$nombreCurso - $$costo</option>";
                 }
 
                 echo "</select>
