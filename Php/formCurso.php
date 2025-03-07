@@ -7,7 +7,6 @@ $num_cursos = $_POST['num_cursos'];
 
 $cursoPrincipal = new Curso($curso_principal);
 $cursosDisponibles = $cursoPrincipal->getCursosAdicionalesDisponibles();
-
 ?>
 
 <!DOCTYPE html>
@@ -28,13 +27,13 @@ $cursosDisponibles = $cursoPrincipal->getCursosAdicionalesDisponibles();
         <p class="text-muted">Seleccione los cursos adicionales que desea tomar.</p>
 
         <form action="/Php/formFactura.php" method="POST">
-            <input type="hidden" name="nombre" value="<?php echo htmlspecialchars($nombre); ?>">
-            <input type="hidden" name="curso_principal" value="<?php echo htmlspecialchars($curso_principal); ?>">
-            <input type="hidden" name="num_cursos" value="<?php echo htmlspecialchars($num_cursos); ?>">
+            <input type="hidden" name="nombre" value="<?php echo $nombre; ?>">
+            <input type="hidden" name="curso_principal" value="<?php echo $curso_principal; ?>">
+            <input type="hidden" name="num_cursos" value="<?php echo $num_cursos; ?>">
 
-            <p><strong>Estudiante:</strong> <?php echo htmlspecialchars($nombre); ?></p>
-            <p><strong>Curso Principal:</strong> <?php echo htmlspecialchars($curso_principal); ?></p>
-            <p><strong>Número de Cursos Adicionales:</strong> <?php echo htmlspecialchars($num_cursos); ?></p>
+            <p><strong>Estudiante:</strong> <?php echo $nombre; ?></p>
+            <p><strong>Curso Principal:</strong> <?php echo $curso_principal; ?></p>
+            <p><strong>Número de Cursos Adicionales:</strong> <?php echo $num_cursos; ?></p>
 
             <?php
             for ($i = 1; $i <= $num_cursos; $i++) {
