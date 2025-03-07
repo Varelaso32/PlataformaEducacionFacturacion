@@ -6,7 +6,9 @@ class Factura
     private $curso_principal;
     private $costo_base;
     private $cursos_adicionales;
+    private $costo_cursos_adicionales;
     private $descuento;
+    private $subtotal;
     private $iva;
     private $total;
 
@@ -21,45 +23,37 @@ class Factura
 
     private function calcularTotal()
     {
-        $subtotal = $this->costo_base;
-        $costoCursosAdicionales = 0;
+        $this->costo_cursos_adicionales = $this->curso_principal->calcularCostoCursosAdicionales($this->cursos_adicionales);
+        $this->subtotal = $this->costo_base + $this->costo_cursos_adicionales;
+
+        // Aplicación de descuentos
         $numCursosAdicionales = count($this->cursos_adicionales);
+        $this->descuento = 0;
 
-        for ($i = 0; $i < $numCursosAdicionales; $i++) {
-            $costoCursosAdicionales += $this->cursos_adicionales[$i]['costo'];
+        if ($numCursosAdicionales >= 9) {
+            $this->descuento = 0.15; // 15%
+        } elseif ($numCursosAdicionales >= 6) {
+            $this->descuento = 0.10; // 10%
+        } elseif ($numCursosAdicionales >= 3) {
+            $this->descuento = 0.05; // 5%
         }
 
-        $subtotal += $costoCursosAdicionales;
-
-        $descuento = 0;
-
-        switch (true) {
-            case ($numCursosAdicionales >= 9):
-                $descuento = 0.15;
-                break;
-            case ($numCursosAdicionales >= 6):
-                $descuento = 0.10;
-                break;
-            case ($numCursosAdicionales >= 3):
-                $descuento = 0.05;
-                break;
-        }
-
-        $subtotal -= $subtotal * $descuento;
-        $this->descuento = $descuento * 100; 
-
-        $this->iva = $subtotal * 0.19;
-        $this->total = $subtotal + $this->iva;
+        $descuentoAplicado = $this->subtotal * $this->descuento;
+        $this->subtotal -= $descuentoAplicado;
+        $this->iva = $this->subtotal * 0.19;
+        $this->total = $this->subtotal + $this->iva;
     }
 
     public function getResumenFactura()
     {
         return [
             "Estudiante" => $this->estudiante,
-            "Curso Principal" => $this->curso_principal,
+            "Curso Principal" => $this->curso_principal->getNombre(),
             "Costo Base" => $this->costo_base,
             "Cursos Adicionales" => $this->cursos_adicionales,
-            "Descuento Aplicado (%)" => $this->descuento,
+            "Costo Cursos Adicionales" => $this->costo_cursos_adicionales,
+            "Descuento Aplicado (%)" => $this->descuento * 100,
+            "Subtotal" => $this->subtotal,
             "IVA (19%)" => $this->iva,
             "Total a Pagar" => $this->total
         ];
